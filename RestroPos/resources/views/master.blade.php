@@ -40,10 +40,8 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/items') }}">Items</a>
                 </li>
-                <li class="nav-item" style="margin-left: 1010px;">
-                    <div class="avatar"><i class="material-icons">&#xE7FF;</i></div>     
-                </li>
-                <li class="nav-item"  style="margin-left: 25px;">
+                
+                <li class="nav-item"  style="margin-left: 1150px;">
                         <a  class="btn btn-danger" href="logout">
                         Logout
                         </a>
