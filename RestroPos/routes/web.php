@@ -6,6 +6,7 @@ use App\Http\Controllers\LiveSearch;
 use App\Http\Controllers\ItemController;
 use App\Http\Controllers\UserAuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LiveSearchCustomer;
 use App\Models\User;
 
 /*
@@ -45,8 +46,10 @@ Route::any('edititem/{user_id?}', [ItemController::class, 'editItem'])->name('ed
 Route::any('edit_action_item', [ItemController::class, 'editActionItem'])->name('editActionItem')->middleware('isLogged');
 
 
-Route::get('/live_search', [LiveSearch::class, 'index'])->middleware('isLogged');
+
 Route::get('/live_search/action', [LiveSearch::class, 'action'])->name('live_search.action')->middleware('isLogged');
+Route::get('/live_search_customer/searchAction', [LiveSearchCustomer::class, 'searchAction'])->name('live_search_customer.searchAction')->middleware('isLogged');
+
 
 Route::get('/login', [UserAuthController::class, 'login']);
 Route::get('/register', [UserAuthController::class, 'register']);
