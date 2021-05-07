@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    
+
 
 
 
@@ -31,22 +31,20 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="{{ url('/home') }}">Home</a>
-                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/customer') }}">Customer Details</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ url('/items') }}">Items</a>
                 </li>
-                
+
                 <li class="nav-item"  style="margin-left: 1150px;">
-                        <a  class="btn btn-danger" href="logout">
+                        <a  class="btn btn-danger" href="{{route('logout')}}">
                         Logout
                         </a>
                  </li>
-                
+
 
             </ul>
         </div>

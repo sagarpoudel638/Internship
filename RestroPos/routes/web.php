@@ -45,7 +45,7 @@ Route::any('deleteitem/{user_id?}', [ItemController::class, 'deleteItem'])->name
 Route::any('edititem/{user_id?}', [ItemController::class, 'editItem'])->name('editItem');
 Route::any('edit_action_item', [ItemController::class, 'editActionItem'])->name('editActionItem')->middleware('isLogged');
 
-
+Route::get('/home/search', [HomeController::class, 'searchitems'])->name('search')->middleware('isLogged');
 
 Route::get('/live_search/action', [LiveSearch::class, 'action'])->name('live_search.action')->middleware('isLogged');
 Route::get('/live_search_customer/searchAction', [LiveSearchCustomer::class, 'searchAction'])->name('live_search_customer.searchAction')->middleware('isLogged');
@@ -55,9 +55,9 @@ Route::get('/login', [UserAuthController::class, 'login']);
 Route::get('/register', [UserAuthController::class, 'register']);
 Route::post('create', [UserAuthController::class, 'create'])->name('auth.create');
 Route::post('check', [UserAuthController::class, 'check'])->name('auth.check');
-Route::get('home', [UserAuthController::class, 'homedata'])->middleware('isLogged');
+Route::get('home/{user_id?}', [HomeController::class, 'homedata'])->name('Home')->middleware('isLogged');
 //{{$LoggedUserInfo->firstname}}
-Route::get('logout', [UserAuthController::class, 'logout'])->middleware('isLogged');
+Route::get('logout', [UserAuthController::class, 'logout'])->name('logout')->middleware('isLogged');
 
 //Route::get('/home', [HomeController::class, 'home'])->middleware('isLogged');
 

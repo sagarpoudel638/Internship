@@ -49,8 +49,8 @@
                         <label for="address">Address</label>
                         <Input type="text" name="address" id="address" class="form-control"></Input>
                     </div>
-                    <div class="form-group">
-                        <button class="btn-primary">Register</button>
+                    <div class="form-group" style="margin-top:5%">
+                        <button class=" btn btn-primary">Register</button>
                     </div>
 
 
@@ -64,8 +64,8 @@
                         <th>Last Name</th>
                         <th>Phone Number</th>
                         <th>Address</th>
-                        <th>Created At</th>
                         <th>Action</th>
+                        <th>Created At</th>
                     </tr>
                     @foreach($customerData as $key=>$customerDatum)
                         <tr>
@@ -79,6 +79,7 @@
                             <td>
                                 <a href="{{route('editUser').'/'.$customerDatum->id}}" class="btn btn-primary btn-xs">Edit</a>
                                 <a href="{{route('deleteUser').'/'.$customerDatum->id}}" class="btn btn-danger btn-xs">Delete</a>
+                                <a href="{{route('Home').'/'.$customerDatum->id}}" class="btn btn-success btn-xs">Select </a>
 
                             </td>
                             <td>{{$customerDatum->created_at->DiffForHumans()}} </td>

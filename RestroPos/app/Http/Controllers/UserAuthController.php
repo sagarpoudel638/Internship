@@ -37,7 +37,7 @@ class UserAuthController extends Controller
 
         if ($query){
             return back()->with('success','You have been registered');
-            
+
         }
         else{return back()->with('fail','Error Occured');}
 
@@ -57,7 +57,7 @@ class UserAuthController extends Controller
                      return redirect('admin');
                 }
                  $request->session()->put('LoggedUser', $user->id );
-                 return redirect('home');
+                 return redirect('customer');
              }
              else{
                  return back()->with('fail', 'Incorrect Password');
@@ -68,24 +68,11 @@ class UserAuthController extends Controller
             return back()->with('fail','No account found for this username');
         }
     }
-    function homedata(){
-        if(Session()->has('LoggedUser')){
 
-            $user = User::where('id','=', session('LoggedUser'))->first();
-            $data = [
-                'LoggedUserInfo'=> $user
-            ];
-            
-            
-        }
-        return view('home',$data);
-        
-        
-    }
-    
-    
-    
-  
+
+
+
+
 
     function logout(){
         if(session()->has('LoggedUser')){

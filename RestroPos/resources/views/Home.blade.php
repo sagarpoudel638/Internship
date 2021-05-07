@@ -6,53 +6,48 @@
 <div class="d-flex ">
     <div class="border shadow-lg p-3 mb-5 bg-body rounded gap-3 " style="width:50%">
         <div class="d-grid gap-2 col-6 mx-auto" style="width:100%"  >
-            <form class="d-flex">
+            <form class="d-flex" action="{{route('search')}}" method="get">
                 <input class="form-control me-2" type="text" name="search" id="search" placeholder="Search items" aria-label="Search">
+                <button type="submit" class="btn btn-primary btn-xs"> Search</button>
             </form>
             <div class="table-responsive" style="width:100%" >
                 <table class="table table-striped table-bordered" style="width:100%"   >
                 <thead >
                     <tr>
+                        <th>S.N.</th>
                          <th>Item Name</th>
-                         <th>Available Quantity</th>
                          <th>Unit Price</th>
                          <th>Order Quanity</th>
                          <th>Action</th>
                     </tr>
                 </thead>
                 <tbody id="livesearch">
-                </tbody >
-                
-                </table>
-            </div>
-        </div>
-      
-    </div>
-    
-    <div class="border shadow-lg p-3 mb-5 bg-body rounded gap-3 " style="width:50%">
-    <div class="d-flex">
-        <div class="d-grid gap-2 col-6 mx-auto" style="width:100%"  >
-                <form class="d-flex">
-                    <input class="form-control me-2" type="text" name="searchcustomer" id="searchcustomer" placeholder="Search Customer" aria-label="Search">
-                </form>
-                <div class="table-responsive" style="width:auto" >
-                    <table class="table table-striped table-bordered"  >
-                    <thead >
-                        <tr>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Phone Number</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="livesearchcustomer">
-                    </tbody >
-                    
-                    </table>
-                </div>
-            </div>
+                    @foreach($itemdata as $key=>$itemdatum)
 
+                    <tr>
+                        <td scope="row">{{++$key}}</td>
+                        <td>{{$itemdatum->itemName}}</td>
+                        <td><input type="quantity" id="Price" name="quantity" placeholder="{{$itemdatum->price}}" value="{{$itemdatum->price}}" disabled></td>
+                        <td><input type="quantity" id="quantity" name="quantity"></td>
+
+                        <td>
+                            <a class="btn btn-primary btn-xs">Add</a>
+                        </td>
+
+                    </tr>
+@endforeach
+
+                </tbody >
+
+                </table>
+                {{$itemdata->links()}}
+            </div>
         </div>
+
+    </div>
+
+    <div class="border shadow-lg p-3 mb-5 bg-body rounded gap-3 " style="width:50%">
+
     <div class="table-responsive">
             <table class="table">
                 <thead>
@@ -80,7 +75,7 @@
 
                 </tr>
                 </tbody>
-                
+
             </table>
         </div>
         <div class="d-flex">
@@ -109,57 +104,22 @@
                 </div>
         </div>
         </div>
-        
-            
 
-        
+
+
+
     </div>
 </div>
 <script>
-$(document).ready(function(){
- fetch_item_data();
- function fetch_item_data(query = '')
- {
-  $.ajax({
-   url:"{{ route('live_search.action') }}",
-   method:'GET',
-   data:{query:query},
-   dataType:'json',
-   success:function(data)
-   {
-    $('#livesearch').html(data.table_data);
-    
-   }
-  })
- }
- $(document).on('keyup', '#search', function(){
-  var query = $(this).val();
-  fetch_item_data(query);
- });
-});
 
-$(document).ready(function(){
- fetch_item_data();
- function fetch_item_data(query = '')
- {
-  $.ajax({
-   url:"{{ route('live_search_customer.searchAction') }}",
-   method:'GET',
-   data:{query:query},
-   dataType:'json',
-   success:function(searchcustomerdata)
-   {
-    $('#livesearchcustomer').html(searchcustomerdata.table_data_customer);
-    
-   }
-  })
- }
- $(document).on('keyup', '#searchcustomer', function(){
-  var query = $(this).val();
-  fetch_item_data(query);
- });
-});
-</script>
+
+
+
+
+
+
+
+
 
 @endsection
 

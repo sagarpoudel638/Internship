@@ -9,11 +9,11 @@ class LiveSearchCustomer extends Controller
 {
     function searchAction(Request $request)
     {
-        
+
      if($request->ajax())
      {
       $result = '';
-     
+
       $queries = $request->get('query');
       if($queries != '')
       {
@@ -21,10 +21,10 @@ class LiveSearchCustomer extends Controller
          ->where('firstname', 'like', '%'.$queries.'%')
          ->orderBy('id', 'desc')
          ->get();
-         
-         
+
+
       }
-     
+
 
       $total_row = $searchcustomerdata->count();
 
@@ -36,14 +36,14 @@ class LiveSearchCustomer extends Controller
 
         $result .= '
         <tr id="livesearchcustomer">
-        
-        
+
+
         <td>'.$row->firstname.'</td>
         <td>'.$row->lastname.'</td>
         <td>'.$row->phonenumber.'</td>
-         
-         <td><a href="" class="btn btn-primary btn-xs">Add</a></td>
-         
+
+         <td><a href="{{route("showitems")}}" class="btn btn-primary btn-xs">Add</a></td>
+
         </tr>
         ';
        }
@@ -54,11 +54,11 @@ class LiveSearchCustomer extends Controller
        <tr>
         <td align="center" colspan="5">No Data Found</td>
        </tr>
-       '; 
+       ';
       }
       $searchcustomerdata = array(
        'table_data_customer'  => $result,
-       
+
       );
 
       echo json_encode($searchcustomerdata);

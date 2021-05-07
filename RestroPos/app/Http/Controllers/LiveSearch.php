@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class LiveSearch extends Controller
 {
-    
+
 
     function action(Request $request)
     {
@@ -21,12 +21,12 @@ class LiveSearch extends Controller
          ->where('itemName', 'like', '%'.$query.'%')
          ->orderBy('id', 'desc')
          ->get();
-         
-         
+
+
       }
       else
       {
-        
+
        $data = DB::table('item')
         ->orderBy('id', 'desc')
          ->get();
@@ -42,14 +42,14 @@ class LiveSearch extends Controller
 
         $output .= '
         <tr id="livesearch">
-        
-        
+
+
         <td>'.$row->itemName.'</td>
          <td>'.$row->qtyStock.'</td>
          <td>'.$row->price.'</td>
          <td><input type="number"></td>
-         <td><a href="" class="btn btn-success btn-xs">Add</a></td>
-         
+         <td><a href="javascript:void(0)" id="edit"  value="'.$row->id.'" class="btn btn-success btn-xs">Add</a></td>
+
         </tr>
         ';
        }
@@ -60,11 +60,11 @@ class LiveSearch extends Controller
        <tr>
         <td align="center" colspan="5">No Data Found</td>
        </tr>
-       '; 
+       ';
       }
       $data = array(
        'table_data'  => $output,
-       
+
       );
 
       echo json_encode($data);
