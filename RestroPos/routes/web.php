@@ -59,5 +59,7 @@ Route::get('home/{user_id?}', [HomeController::class, 'homedata'])->name('Home')
 //{{$LoggedUserInfo->firstname}}
 Route::get('logout', [UserAuthController::class, 'logout'])->name('logout')->middleware('isLogged');
 
+Route::any('AddOrder', [HomeController::class, 'AddOrder'])->name('AddOrder')->middleware('isLogged');
+
 //Route::get('/home', [HomeController::class, 'home'])->middleware('isLogged');
 
